@@ -71429,11 +71429,11 @@ var CustomerList = /*#__PURE__*/function (_React$Component) {
         }, row.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, row.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, row.nic), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, row.address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, row.contact.map(function (item) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.mobile);
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-          onClick: function onClick(e) {
-            return _this.handleDelete(row.id);
-          },
           className: "text-center"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick(e) {
+            if (window.confirm('Are you sure you wish to delete this item?')) _this.handleDelete(row.id);
+          },
           className: "btn btn-danger"
         }, "Delete")));
       });

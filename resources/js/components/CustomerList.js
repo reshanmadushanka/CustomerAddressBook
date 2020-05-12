@@ -23,7 +23,7 @@ class CustomerList extends React.Component {
                         );
                     })}
                 </td>
-                <td onClick={(e) => this.handleDelete(row.id)} className="text-center"><button className="btn btn-danger">Delete</button></td>
+                <td className="text-center"><button  onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) this.handleDelete(row.id) } } className="btn btn-danger">Delete</button></td>
             </tr>
         })
     }
