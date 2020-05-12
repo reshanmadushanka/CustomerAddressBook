@@ -201,27 +201,27 @@ class CreateCustomer extends React.Component {
                 <ToastContainer />
                 <form>
                     <div className="form-group row">
-                        <label className="col-md-2 col-form-label" >Name</label>
+                        <label className="col-md-2 col-form-label" >Name *</label>
                         <div className="col-md-10">
                             <input type="text" onChange={(e) => this.setState({ name: e.target.value })} value={this.state.name} className="form-control" id="staticEmail" placeholder="name" />
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label className="col-md-2 col-form-label" >NIC</label>
+                        <label className="col-md-2 col-form-label" >NIC *</label>
                         <div className="col-md-10">
                             <input type="text" className="form-control" onChange={(e) => this.setState({ nic: e.target.value })} value={this.state.nic} placeholder="915485764V" />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label className="col-md-2 col-form-label" >Address</label>
+                        <label className="col-md-2 col-form-label" >Address *</label>
                         <div className="col-md-10">
                             <textarea type="text" className="form-control" value={this.state.address} onChange={(e) => this.setState({ address: e.target.value })} />
                         </div>
                     </div>
 
                     <div className="form-group row">
-                        <label className="col-md-2 col-form-label" >Telephone</label>
+                        <label className="col-md-2 col-form-label" >Telephone *</label>
                         <div className="col-md-8">
                             {this.renderItems()}
                         </div>

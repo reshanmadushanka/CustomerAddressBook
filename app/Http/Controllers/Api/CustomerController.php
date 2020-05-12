@@ -52,6 +52,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'nic' => 'required',
+            'address' => 'required',
             'item_list.*.mobile' => 'required|min:10|numeric',
         ]);
 
