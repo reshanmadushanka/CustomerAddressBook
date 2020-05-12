@@ -20,7 +20,7 @@ class CustomerResource extends JsonResource
             'name' => $this->name,
             'nic' => $this->nic,
             'address' => $this->address->name,
-            'conatact' => ContactResource::collection($this->contact),
+            'contact' => ContactResource::collection($this->contact),
 
         ];
     }

@@ -26,9 +26,9 @@ class CustomerRepository
         $address->name = $request->address;
         $address->save();
 
-        foreach ($request->mobiles as $mobile) {
+        foreach ($request->item_list as $mobile) {
             $contact = new Contact();
-            $contact->mobile = $mobile;
+            $contact->mobile = $mobile['mobile'];
             $contact->customer_id = $customer->id;
             $contact->save();
         }
@@ -45,9 +45,9 @@ class CustomerRepository
         $address->name = $request->address;
         $address->save();
 
-        $contact = Contact::where('customer_id',$id)->delete();
+        $contact = Contact::where('customer_id', $id)->delete();
 
-        foreach ($request->mobiles as $mobile) {
+        foreach ($request->item_list as $mobile) {
             $contact = new Contact();
             $contact->mobile = $mobile;
             $contact->customer_id = $customer->id;
@@ -55,9 +55,18 @@ class CustomerRepository
         }
     }
 
-    public function deleteCustomer($id)
+    public function searchCustomer(Request $request)
     {
-        $customer = Customer::find($id);
+        return Customer::with('address', 'contact')
+            ->when($request->name, function ($q) {
+                $q->where('name', 'like', '%' . request('name') . '%');
+            })
+            ->get();
+    }
+
+    public function deleteCustomer(Request $request)
+    {
+        $customer = Customer::find($request->id);
         $customer->address()->delete();
         $customer->contact()->delete();
         $customer->delete();

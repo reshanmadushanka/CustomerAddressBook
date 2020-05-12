@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\CustomerResource;
 use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
@@ -51,6 +52,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'nic' => 'required',
+            'item_list.*.mobile' => 'required|min:10|numeric',
         ]);
 
         try {
@@ -124,11 +126,11 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         try {
             DB::beginTransaction();
-            $this->customer_repository->deleteCustomer($id);
+            $this->customer_repository->deleteCustomer($request);
             DB::commit();
             return [
                 "success" => true,
@@ -141,5 +143,11 @@ class CustomerController extends Controller
                 "msg" => $e->getMessage(),
             ];
         }
+    }
+
+    public function search(Request $request)
+    {
+        $customers = $this->customer_repository->searchCustomer($request);
+        return CustomerResource::collection($customers);
     }
 }
