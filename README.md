@@ -1,9 +1,6 @@
 
 
-## Customer Address Book
-" 
-
-# Getting started
+# Customer Address Book
 
 ## Installation
 
